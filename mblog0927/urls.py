@@ -24,5 +24,7 @@ urlpatterns = [
     path('about', mv.about),
     path('about/<int:num>', mv.about),
     path('post/<int:yr>/<int:mon>/<int:day>/<int:post_num>/', mv.Post, name='post-url'),
+    path('carprice/', mv.carprice),
+    path('carprice/<int:maker>/', mv.carprice, name='carprice-url'),
 
 ]

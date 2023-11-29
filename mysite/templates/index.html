@@ -1,15 +1,26 @@
 {% extends "base2.html" %}
 {% block title %}原神~啟動!!!{% endblock title %}
-{% block headmessage %}<h3 style="font-family:微軟正黑體;font-size:14pt;font-weight=bold;">{% endblock headmessage %}
+{% block headmessage %}
+<h3 style="font-family:微軟正黑體;font-size:14pt;font-weight=bold;">好蒿爽爽</h3>
+    hour: {{ hour }}    
+{% if hour >= 13 %}
+    下午安
+    {% elif hour < 10 %}
+    早安
+    {% else %}
+    你好
+    {% endif %}
+    <br>
+{% endblock headmessage %}
 {% block content %}
 {% for post in posts %}
-測試
+測試222
 <a href="{% url 'post-url' 2015 12 1 01 %}">Show the Post</a>
 
 <div class="card">
     <div class='card-header'>
         <p style="font-family:微軟正黑體;font-size:14pt;font-weight=bold;">
-            <a href='{% url 'showpost' post.slug %}'></a>
+            <a href="{% url 'showpost' post.slug %}">{{post.title}}</a>
         </p>
     </div>
     <div class='card-body' style='background-color:#fffdd'>

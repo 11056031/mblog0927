@@ -21,6 +21,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', mv.homepage, name="homepage"),
     path('post/<slug:slug>/', mv.showpost, name='showpost'),
+    path('post/', mv.abc, name='abc'),
+    path('post/<int:post_id>/comments', mv.show_comments, name='show-comments'),
     path('about', mv.about),
     path('about/<int:num>', mv.about),
     path('post/<int:yr>/<int:mon>/<int:day>/<int:post_num>/', mv.Post, name='post-url'),

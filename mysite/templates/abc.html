@@ -1,0 +1,29 @@
+{% extends "base2.html" %}
+{% block title %}原神~啟動!!!{% endblock title %}
+{% block headmessage %}
+<h3 style="font-family:微軟正黑體;font-size:14pt;font-weight=bold;">好蒿爽爽
+{% endblock headmessage %}
+{% block content %}
+{% for post in posts %}
+{% if forloop.first %}
+
+<table>
+    <tr background='#cccccc'>
+        <th>Title</th>
+        <th>SLUG</th>
+        <th>pub date</th>
+        <th>檢視留言</th>
+    </tr>
+{% endif %}
+    <tr background='{% cycle "#ffccff" "#ccffcc"}'>
+        <td>{{post.title}}</td>
+        <td>{{post.slug}}</td>
+        <td>{{post.pub_date}}</td>
+        <td><a href="{% url 'show-comments' post.id %}"</a>view</td>
+    </tr>
+{% if forloop.last%}
+</table>
+{% endif %}
+
+{% endfor %}
+{% endblock content %}

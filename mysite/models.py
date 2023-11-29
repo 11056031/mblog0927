@@ -13,6 +13,14 @@ class Post(models.Model):
     def __str__(self) -> str:
         return self.title
 
+class Comment(models.Model):
+    post = models.ForeignKey(Post, on_delete=models.CASCADE)
+    text = models.CharField(max_length=200)
+    pub_date = models.DateTimeField(auto_now_add=True) 
+    
+    def __str__(self) -> str:
+        return self.text
+    
 class NewTable(models.Model):
     bigint_f = models.BigIntegerField()
     bool_f   = models.BooleanField()

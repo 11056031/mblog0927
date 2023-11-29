@@ -11,6 +11,15 @@ def homepage(request):
     print(f'hour = {hour}')
     return render(request, 'index.html',locals())
 
+def abc(request):
+    posts = Post.objects.all()
+    return render(request, 'abc.html', locals())
+
+def show_comments(request, post_id):
+    #comments = Comment.objects.filter(post=post_id)
+    comments = Post.objects.get(id=post_id).comment_set.all()
+    return HttpResponse(comments)
+
 def showpost(request, slug):
     try:
         post=Post.objects.get(slug=slug)
@@ -33,7 +42,7 @@ def about(request,num=-1):
         return render(request, 'about.html', locals())
 
 def carprice(request, maker=0):
-    car_maker = ['SAAB', 'Ford', 'Honda', 'Mazda', 'Nissan','Toyota' ]
+    car_maker = ['Ford', 'Honda', 'Mazda', 'SAAB', 'Nissan','Toyota' ]
     car_list = [
         [{'model':'Fiesta','price': 203500},
         {'model':'Focus', 'price': 605000}, 

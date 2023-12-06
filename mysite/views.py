@@ -3,6 +3,8 @@ from mysite.models import Post
 from django.http import HttpResponse
 from datetime import datetime
 from django.shortcuts import redirect
+from django.shortcuts import render
+
 # Create your views here.
 def homepage(request):
     posts = Post.objects.all()
@@ -59,8 +61,20 @@ def carprice(request, maker=0):
     cars = car_list[maker]
     return render(request, 'carprice.html', locals())
 
+from django.http import HttpResponseRedirect
+from django.urls import reverse
 
-
+def new_post(request):
+    print(f'form method: {request.method}')
+    if request.method == 'GET':
+        return render(request, 'form_1.html', locals())
+    elif request.method == 'POST':
+        title = request.POST['title']
+        slug = request.POST['slug']
+        content = request.POST['content']
+        post = Post(title=title, slug=slug, body=content)
+        post.save()
+        return HttpResponseRedirect(reverse('abc'))
 '''
 
 def homepage(request):
